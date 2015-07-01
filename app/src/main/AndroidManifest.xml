@@ -3,10 +3,11 @@
     package="nsit.app.com.nsitapp" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -32,9 +33,15 @@
             android:name=".ImageAct"
             android:label="@string/title_activity_image" >
         </activity>
+        <activity
+            android:name=".LocationMapView"
+            android:label="LocationMapView" >
+        </activity>
 
         <uses-permission android:name="android.permission.INTERNET" />
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD-hWnEb2F-94y6XyaG5WlKXZKBpKr9PaE"/>
 
     </application>
 

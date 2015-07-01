@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mDrawerList;
     ListView lv;
     private ActionBarDrawerToggle mDrawerToggle;
-    static final String[] sideitems = new String[] { "Home" , "My Feed","Video","Calendar" , "Professors","About" };	//items on navigation drawer
+    static final String[] sideitems = new String[] { "Home" , "My Feed","Video","Calendar" , "Professors","Locations" };	//items on navigation drawer
     SwipeRefreshLayout swipeLayout;
     Integer[] imageId = {
             R.drawable.ic_action_star_10,
@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-
-
 
         //All for navigation drawer
         CustomList2 adapter2 = new CustomList2(this, sideitems, imageId);
@@ -174,6 +172,12 @@ public class MainActivity extends AppCompatActivity {
                 Fragment f4 = new Professors();
                 ft.replace(R.id.content_frame, f4);
                 getSupportActionBar().setTitle("Professors List");
+                break;
+
+            case 6 :
+                Fragment f5 = new Locations();
+                ft.replace(R.id.content_frame, f5);
+                getSupportActionBar().setTitle("Locations");
                 break;
 
         }

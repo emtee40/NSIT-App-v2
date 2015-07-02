@@ -204,7 +204,6 @@ public class Home extends Fragment {
             lv.addHeaderView(new View(getActivity()));
             lv.addFooterView(new View(getActivity()));
             lv.setAdapter(adapter);
-           // Log.e("Yo", text);
         }
     }
 

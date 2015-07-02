@@ -22,6 +22,7 @@ public class Locations extends Fragment {
     ArrayList<LocationGroup> LocationsGroupsList = new ArrayList<>();
     ExpandableListView listView;
     ExpandableListAdapter listAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

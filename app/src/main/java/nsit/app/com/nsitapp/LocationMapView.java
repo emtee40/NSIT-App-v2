@@ -83,18 +83,16 @@ public class LocationMapView extends Activity {
                 Toast msg2 = Toast.makeText(LocationMapView.this,String.valueOf(acc), Toast.LENGTH_SHORT);
                 msg.show();
                 msg2.show();
-                if (acc>15.0){
-                    OriginLat = Double.toString(loc.getLongitude());
-                    OriginLong = Double.toString(loc.getLatitude());
-                    locmgr.removeUpdates(this);
-                    getDirections.execute();
-                }
+                OriginLat = Double.toString(loc.getLongitude());
+                OriginLong = Double.toString(loc.getLatitude());
+                locmgr.removeUpdates(this);
+                getDirections.execute();
             }
             public void onStatusChanged(String provider, int status, Bundle extras) {}
             public void onProviderEnabled(String provider) {}
             public void onProviderDisabled(String provider) {}
         };
-        locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
+        locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
     }
 

@@ -58,9 +58,7 @@ public class LocationMapView extends Activity {
             TextView txtHeader = (TextView)findViewById(R.id.LocationTitle);
             this.DestinationLat = LocationLat;
             this.DestinationLong = LocationLong;
-<<<<<<< HEAD
             Log.e("TextHeader",String.valueOf(txtHeader));
-=======
             LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
             try {
                 Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -71,7 +69,6 @@ public class LocationMapView extends Activity {
                 Log.e("Maps Error", e.toString());
             }
 
->>>>>>> origin/master
             txtHeader.setText(LocationName);
             ShowMarker(Double.parseDouble(LocationLat), Double.parseDouble(LocationLong), LocationName);
         }
@@ -82,42 +79,13 @@ public class LocationMapView extends Activity {
         GPSTracker tracker = new GPSTracker(this);
         if (tracker.canGetLocation() == false) {
             tracker.showSettingsAlert();
-          //  locationgot = false;
+            Log.e("GPS Tracker","Failed to initialize.");
         } else {
             OriginLat = Double.toString(tracker.getLatitude());
             OriginLong = Double.toString(tracker.getLongitude());
-            //locationgot = true;
+            Log.e("GPS Tracker", "Got coordinates, fetching data.");
             getDirections.execute();
         }
-
-
-
-
-        locmgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = locmgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (location==null){
-            Log.e("getLastKnownLocation","Not found.");
-        }
-        else{
-            OriginLat = Double.toString(location.getLongitude());
-            OriginLong = Double.toString(location.getLatitude());
-            Log.e("getLastKnownLocation","Lat: "+OriginLat+" Long: "+OriginLong);
-            getDirections.execute();
-        }
-        final LocationListener locationListener = new LocationListener() {
-            public void onLocationChanged(Location loc) {
-                Log.e("GPS: ","Location change called.");
-                OriginLat = Double.toString(loc.getLongitude());
-                OriginLong = Double.toString(loc.getLatitude());
-                locmgr.removeUpdates(this);
-                getDirections.execute();
-            }
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
-            public void onProviderEnabled(String provider) {}
-            public void onProviderDisabled(String provider) {}
-        };
-        locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
-
     }
 
     public void ShowMarker(Double LocationLat, Double LocationLong, String LocationName){

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
@@ -87,13 +88,15 @@ public class VideoList_Adapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        Button PlayVideoBtn = (Button)vi.findViewById(R.id.PlayVideoButton);
+        LinearLayout PlayCont = (LinearLayout)vi.findViewById(R.id.PlayContainer);
         final String finalVideoId = VideoId;
-        PlayVideoBtn.setOnClickListener(new View.OnClickListener() {
+        PlayCont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Activity activity = (Activity)v.getContext();
                 try {
+                    Log.e("activity",activity.toString());
+                    Log.e("finalVideoId",finalVideoId);
                     Intent intent = YouTubeStandalonePlayer.createVideoIntent(activity, "AIzaSyD-hWnEb2F-94y6XyaG5WlKXZKBpKr9PaE", finalVideoId);
                     activity.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
@@ -107,6 +110,7 @@ public class VideoList_Adapter extends BaseAdapter {
                                 }
                             });
                     alertDialog.show();
+                    e.printStackTrace();
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
                     alertDialog.setTitle("Oops!");

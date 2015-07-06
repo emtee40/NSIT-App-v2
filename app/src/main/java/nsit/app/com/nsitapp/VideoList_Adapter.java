@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.h6ah4i.android.materialshadowninepatch.MaterialShadowContainerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,6 +69,13 @@ public class VideoList_Adapter extends BaseAdapter {
         View vi = convertView;
         if (vi == null)
             vi = inflater.inflate(R.layout.video_listitem, null);
+
+        MaterialShadowContainerView shadowView = (MaterialShadowContainerView) vi.findViewById(R.id.shadow_item_container);
+        float density = vi.getResources().getDisplayMetrics().density;
+        shadowView.setShadowTranslationZ(density * 7.0f); // 2.0 dp
+        shadowView.setShadowElevation(density * 10.0f); // 4.0 dp
+        Log.e("Shadow view: ", String.valueOf(density) +" "+ shadowView.getShadowElevation()+" "+shadowView.getShadowTranslationZ());
+
         TextView Title = (TextView) vi.findViewById(R.id.VideoTitle);
         TextView Description = (TextView) vi.findViewById(R.id.VideoDescription);
         String VideoId = null;

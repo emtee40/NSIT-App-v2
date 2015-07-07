@@ -38,6 +38,7 @@ public class Video extends Fragment {
     String nextPageToken = "";
     String prevPageToken = "";
     String navigateTo = "next";
+    View Spinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class Video extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_video, container, false);
         listview = (ListView) rootView.findViewById(R.id.videos_list);
         Log.e("YouTube:", "Fetching data");
-        View Spinner = rootView.findViewById(R.id.VideoProgressSpinner);
+        Spinner = rootView.findViewById(R.id.VideoProgressSpinner);
         Spinner.setVisibility(View.VISIBLE);
 
         try {
@@ -79,7 +80,7 @@ public class Video extends Fragment {
             alertDialog.show();
             Log.e("YouTube:", "Cannot fetch " + e.toString());
         }
-        Spinner.setVisibility(View.GONE);
+
 
         Button btnNextPage = (Button)rootView.findViewById(R.id.NextPageButton);
         Button btnPrevPage = (Button)rootView.findViewById(R.id.PrevPageButton);
@@ -88,8 +89,11 @@ public class Video extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    navigateTo = "next";
-                    new Video_RetrieveFeed().execute();
+                    if(nextPageToken!="") {
+                        Spinner.setVisibility(View.VISIBLE);
+                        navigateTo = "next";
+                        new Video_RetrieveFeed().execute();
+                    }
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                     alertDialog.setTitle("Can't connect.");
@@ -109,8 +113,12 @@ public class Video extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    navigateTo = "prev";
-                    new Video_RetrieveFeed().execute();
+                    if(prevPageToken!="")
+                    {
+                        Spinner.setVisibility(View.VISIBLE);
+                        navigateTo = "prev";
+                        new Video_RetrieveFeed().execute();
+                    }
                 } catch (Exception e) {
                     AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                     alertDialog.setTitle("Can't connect.");
@@ -126,8 +134,6 @@ public class Video extends Fragment {
                 }
             }
         });
-
-        Spinner.setVisibility(View.GONE);
 
         return rootView;
     }
@@ -171,10 +177,17 @@ public class Video extends Fragment {
                 if(YTFeed.has("nextPageToken")) {
                     nextPageToken = YTFeed.getString("nextPageToken");
                 }
+                else{
+                    nextPageToken = "";
+                }
                 if(YTFeed.has("prevPageToken")){
                     prevPageToken = YTFeed.getString("prevPageToken");
                 }
+                else{
+                    prevPageToken = "";
+                }
                 populateList(YTFeedItems);
+                Spinner.setVisibility(View.GONE);
             } catch (Exception e) {
                 e.printStackTrace();
             }

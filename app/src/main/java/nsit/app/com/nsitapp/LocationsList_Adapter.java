@@ -1,20 +1,19 @@
 package nsit.app.com.nsitapp;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -137,6 +136,18 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
 
         TextView txtHeader = (TextView) convertView.findViewById(R.id.LocationItem);
         txtHeader.setText(childText);
+
+        AnimationSet set = new AnimationSet(true);
+        TranslateAnimation slide = new TranslateAnimation(0,0,-50,0);
+        slide.setInterpolator(new DecelerateInterpolator(5.0f));
+        slide.setDuration(100);
+        Animation fade = new AlphaAnimation(0,1.0f);
+        fade.setInterpolator(new DecelerateInterpolator(5.0f));
+        fade.setDuration(100);
+        set.addAnimation(slide);
+        set.addAnimation(fade);
+        set.setStartOffset(childPosition*100);
+        convertView.startAnimation(set);
         return convertView;
     }
 

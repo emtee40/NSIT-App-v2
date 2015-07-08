@@ -11,6 +11,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,13 +47,15 @@ public class LocationMapView extends Activity {
     String OriginLong;
     String DestinationLat;
     String DestinationLong;
-    String StartAddress;
-    private LocationManager locmgr = null;
+    ProgressBar MapSpinner;
+    Integer LocationIcon;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_view);
+        MapSpinner = (ProgressBar)findViewById(R.id.MapProgressBar);
+        MapSpinner.setVisibility(View.VISIBLE);
         this.mapFragment = (com.google.android.gms.maps.MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         Bundle extras = getIntent().getExtras();
@@ -55,6 +64,7 @@ public class LocationMapView extends Activity {
             String LocationLat = extras.getString("LocationLat");
             String LocationLong = extras.getString("LocationLong");
             String LocationName = extras.getString("LocationName");
+            this.LocationIcon = extras.getInt("LocationIcon");
             TextView txtHeader = (TextView)findViewById(R.id.LocationTitle);
             this.DestinationLat = LocationLat;
             this.DestinationLong = LocationLong;
@@ -70,7 +80,7 @@ public class LocationMapView extends Activity {
             }
 
             txtHeader.setText(LocationName);
-            ShowMarker(Double.parseDouble(LocationLat), Double.parseDouble(LocationLong), LocationName);
+            ShowMarker(Double.parseDouble(LocationLat), Double.parseDouble(LocationLong), LocationName, LocationIcon);
         }
 
         final Location_GetDirections getDirections = new Location_GetDirections();
@@ -88,7 +98,7 @@ public class LocationMapView extends Activity {
         }
     }
 
-    public void ShowMarker(Double LocationLat, Double LocationLong, String LocationName){
+    public void ShowMarker(Double LocationLat, Double LocationLong, String LocationName, Integer LocationIcon){
         GoogleMap map = mapFragment.getMap();
         LatLng Coord = new LatLng(LocationLat, LocationLong);
 
@@ -98,7 +108,7 @@ public class LocationMapView extends Activity {
         map.addMarker(new MarkerOptions()
                 .title(LocationName)
                 .position(Coord)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                .icon(BitmapDescriptorFactory.fromResource(LocationIcon)));
     }
 
     public class Location_GetDirections extends AsyncTask<String, Void, String> {
@@ -143,6 +153,7 @@ public class LocationMapView extends Activity {
                 txtLocationDistance.setText(Distance);
                 txtTimeDrive.setText(TimeDrive);
                 txtTimeWalk.setText(TimeWalk);
+                MapSpinner.setVisibility(View.GONE);
             } catch (Exception e) {
                 e.printStackTrace();
             }

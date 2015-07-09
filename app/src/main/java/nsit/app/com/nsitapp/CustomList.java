@@ -11,6 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.FrameLayout;
@@ -130,8 +135,8 @@ public class CustomList extends ArrayAdapter<String>{
 			f.setVisibility(View.GONE);
 		}
 
-			/*AnimationSet set = new AnimationSet(true);
-			TranslateAnimation slide = new TranslateAnimation(-200, 0, -200, 0);
+			AnimationSet set = new AnimationSet(true);
+			TranslateAnimation slide = new TranslateAnimation(-100, 0, -100, 0);
 			slide.setInterpolator(new DecelerateInterpolator(5.0f));
 			slide.setDuration(300);
 			Animation fade = new AlphaAnimation(0, 1.0f);
@@ -139,7 +144,7 @@ public class CustomList extends ArrayAdapter<String>{
 			fade.setDuration(300);
 			set.addAnimation(slide);
 			set.addAnimation(fade);
-			rowView.startAnimation(set);*/
+			rowView.startAnimation(set);
 
 		return rowView;
 	}

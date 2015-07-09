@@ -54,6 +54,7 @@ public class Home extends Fragment {
     String next=" ",token;
     CustomList adapter;
     View footerView;
+    int listCount;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -90,6 +91,7 @@ public class Home extends Fragment {
                     loadingMore=true;
                     lv.addFooterView(footerView);
                     new DownloadWebPageTask3(Val.id_nsitonline).execute();
+                    listCount = lastInScreen;
                 }
 
             }
@@ -312,6 +314,8 @@ public class Home extends Fragment {
                             list8.add(arr.getJSONObject(i).getString("created_time"));
                         else
                             list8.add(null);
+
+
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -322,6 +326,7 @@ public class Home extends Fragment {
                 ob = ob.getJSONObject("paging");
                 next = ob.getString("next");
 
+
             } catch (Exception e) {
 
             }
@@ -331,6 +336,14 @@ public class Home extends Fragment {
             loadingMore=false;
             lv.removeFooterView(footerView);
             adapter.notifyDataSetChanged();
+            try{
+                Log.e("ListCount: ",String.valueOf(listCount));
+                lv.smoothScrollToPosition(listCount+1);
+            }
+            catch (Exception e){
+                Log.e("Scroll To: ",e.toString());
+                e.printStackTrace();
+            }
 
           /*  lv.post(new Runnable() {
                 @Override

@@ -196,10 +196,5 @@ public class Locations extends Fragment {
     }
 
 
-<<<<<<< HEAD
 }
 
-
-=======
-}
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30

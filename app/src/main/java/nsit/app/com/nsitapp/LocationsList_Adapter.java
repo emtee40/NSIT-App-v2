@@ -153,11 +153,7 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
             convertView.startAnimation(set);
         }
 
-<<<<<<< HEAD
-            return convertView;
-=======
         return convertView;
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30
     }
 
     @Override
@@ -170,8 +166,3 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
         lastExpandedGroupPosition = groupPosition;
     }
 }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30

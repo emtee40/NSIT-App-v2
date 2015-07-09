@@ -48,7 +48,7 @@ public class FinalFeed extends Fragment {
     ProgressBar pb,pb2;
     SwipeRefreshLayout swipeLayout;
     String nextn;
-    CustomList adapter;
+    MyFeedList adapter;
     int first;
     static int itemsadded=-1;
    String nextcollegespace,nextcrosslinks,nextjunoon,nextbullet,nextrotaract,nextquiz,nextieee,nextcsi,nextashwa,nextdeb;
@@ -393,7 +393,7 @@ public class FinalFeed extends Fragment {
 
             lv.removeFooterView(footerView);
 
-            adapter = new CustomList(activity, list6, list, list2, list7, list1, list8);
+            adapter = new MyFeedList(activity, list6, list, list2, list7, list1, list8);
             lv.addHeaderView(new View(activity));
             lv.addFooterView(new View(activity));
             if (activity != null)

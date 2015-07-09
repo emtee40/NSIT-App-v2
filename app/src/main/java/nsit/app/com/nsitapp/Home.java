@@ -340,7 +340,6 @@ public class Home extends Fragment {
                 Log.e("Scroll To: ",e.toString());
                 e.printStackTrace();
             }
-<<<<<<< HEAD
 
           /*  lv.post(new Runnable() {
                 @Override
@@ -350,8 +349,6 @@ public class Home extends Fragment {
             });*/
 
             // Log.e("Yo", text);
-=======
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30
         }
     }
     @Override

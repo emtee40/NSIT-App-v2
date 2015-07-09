@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package nsit.app.com.nsitapp;
 
 import android.app.Activity;
@@ -24,50 +24,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Button;
 import java.util.List;
-
-import functions.ImageLoader2;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-=======
+import functions.ImageLoader;
 
-		package nsit.app.com.nsitapp;
-
-		import android.app.Activity;
-		import android.content.Context;
-		import android.content.Intent;
-		import android.net.ConnectivityManager;
-		import android.net.NetworkInfo;
-		import android.os.AsyncTask;
-		import android.util.Log;
-		import android.view.LayoutInflater;
-		import android.view.View;
-		import android.view.View.OnClickListener;
-		import android.view.ViewGroup;
-		import android.view.animation.AlphaAnimation;
-		import android.view.animation.Animation;
-		import android.view.animation.AnimationSet;
-		import android.view.animation.DecelerateInterpolator;
-		import android.view.animation.TranslateAnimation;
-		import android.widget.ArrayAdapter;
-		import android.widget.ImageView;
-		import android.widget.FrameLayout;
-		import android.widget.ProgressBar;
-		import android.widget.TextView;
-		import android.widget.Button;
-		import java.util.List;
-		import functions.ImageLoader;
-		import java.text.DateFormat;
-		import java.text.ParseException;
-		import java.text.SimpleDateFormat;
-		import java.util.Date;
-		import java.util.Locale;
-		import java.util.TimeZone;
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30
 
 public class CustomList extends ArrayAdapter<String>{
 	private final Activity context;
@@ -171,7 +135,6 @@ public class CustomList extends ArrayAdapter<String>{
 			f.setVisibility(View.GONE);
 		}
 
-<<<<<<< HEAD
 			AnimationSet set = new AnimationSet(true);
 			TranslateAnimation slide = new TranslateAnimation(-100, 0, -100, 0);
 			slide.setInterpolator(new DecelerateInterpolator(5.0f));
@@ -182,18 +145,6 @@ public class CustomList extends ArrayAdapter<String>{
 			set.addAnimation(slide);
 			set.addAnimation(fade);
 			rowView.startAnimation(set);
-=======
-		AnimationSet set = new AnimationSet(true);
-		TranslateAnimation slide = new TranslateAnimation(-100, 0, -100, 0);
-		slide.setInterpolator(new DecelerateInterpolator(5.0f));
-		slide.setDuration(300);
-		Animation fade = new AlphaAnimation(0, 1.0f);
-		fade.setInterpolator(new DecelerateInterpolator(5.0f));
-		fade.setDuration(300);
-		set.addAnimation(slide);
-		set.addAnimation(fade);
-		rowView.startAnimation(set);
->>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30
 
 		return rowView;
 	}

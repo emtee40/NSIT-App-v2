@@ -79,12 +79,8 @@ public class Locations extends Fragment {
                     case "Miscellaneous": IconId = R.drawable.ic_public_black_24dp;
                         break;
                 }
-<<<<<<< HEAD
                 v.setTag(groupPosition);
-                ShowOnMap(v, LocationsGroupsList.get(groupPosition).Locations.get(childPosition), IconId);
-=======
                 ShowOnMap(v,LocationsGroupsList.get(groupPosition).Locations.get(childPosition),IconId);
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
                 return false;
             }
         });
@@ -198,11 +194,8 @@ public class Locations extends Fragment {
         this.LocationsGroupsList.add(SportsGroup);
         this.LocationsGroupsList.add(MiscGroup);
     }
-<<<<<<< HEAD
 
 
 }
 
-=======
-}
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
+

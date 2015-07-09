@@ -1,10 +1,7 @@
 package nsit.app.com.nsitapp;
 
 import android.content.Context;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
-<<<<<<< HEAD
-=======
 import android.widget.BaseAdapter;
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-<<<<<<< HEAD
-=======
 import android.widget.LinearLayout;
 import android.widget.ListView;
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -98,10 +89,7 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
         Locations.LocationGroup LocGroup = getGroup(groupPosition);
         String headerTitle = LocGroup.GroupHeader;
         String groupType = LocGroup.GroupType;
-<<<<<<< HEAD
         listView = (ExpandableListView)parent;
-=======
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -116,11 +104,7 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
 
         switch(groupType){
             case "College": GroupIcon.setImageResource(R.drawable.ic_school_black_24dp);
-<<<<<<< HEAD
                             break;
-=======
-                break;
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
             case "Campus": GroupIcon.setImageResource(R.drawable.ic_business_black_24dp);
                 break;
             case "Hostel": GroupIcon.setImageResource(R.drawable.ic_hotel_black_24dp);
@@ -155,7 +139,6 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
         TextView txtHeader = (TextView) convertView.findViewById(R.id.LocationItem);
         txtHeader.setText(childText);
 
-<<<<<<< HEAD
         if(lastExpandedGroupPosition == groupPosition) {
             AnimationSet set = new AnimationSet(true);
             TranslateAnimation slide = new TranslateAnimation(0, 0, -50, 0);
@@ -171,27 +154,12 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
         }
 
             return convertView;
-=======
-        AnimationSet set = new AnimationSet(true);
-        TranslateAnimation slide = new TranslateAnimation(0,0,-50,0);
-        slide.setInterpolator(new DecelerateInterpolator(5.0f));
-        slide.setDuration(100);
-        Animation fade = new AlphaAnimation(0,1.0f);
-        fade.setInterpolator(new DecelerateInterpolator(5.0f));
-        fade.setDuration(100);
-        set.addAnimation(slide);
-        set.addAnimation(fade);
-        set.setStartOffset(childPosition*100);
-        convertView.startAnimation(set);
-        return convertView;
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-<<<<<<< HEAD
 
     @Override
     public void onGroupExpanded(int groupPosition){
@@ -199,6 +167,4 @@ public class LocationsList_Adapter extends BaseExpandableListAdapter {
     }
 }
 
-=======
-}
->>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
+

@@ -99,7 +99,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -174,7 +174,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -238,7 +238,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -315,7 +315,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -379,7 +379,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -454,7 +454,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -517,7 +517,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -590,7 +590,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"
@@ -654,7 +654,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.5"
                     android:orientation="vertical"
-                   android:background="@drawable/shadow_1">
+                    android:background="@drawable/shadow_1">
                     <ImageView
                         android:layout_width="fill_parent"
                         android:layout_height="200dp"

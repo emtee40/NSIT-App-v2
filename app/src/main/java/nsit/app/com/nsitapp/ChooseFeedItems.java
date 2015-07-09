@@ -1,28 +1,22 @@
 package nsit.app.com.nsitapp;
 
-/**
- * Created by kamlesh kumar garg on 21-06-2015.
- */
-
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Feed extends Fragment {
+public class ChooseFeedItems extends AppCompatActivity {
     ProgressBar pb,pb2;
     CheckBox collegespace,crosslinks,junoon,bullet,rotaract,quiz,ieee,csi,ashwa,deb;
     Boolean Collegespace=false,Crosslinks=false,Junoon=false,Bullet=false,Rotaract=false,Quiz=false,Ieee=false,Csi=false,Ashwa=false,Deb=false;
@@ -51,55 +45,42 @@ public class Feed extends Fragment {
     List<String> list2 = new ArrayList<String>();
     List<String> list5 = new ArrayList<String>();
     List<String> list6 = new ArrayList<String>();
-    List<String> list7 = new ArrayList<String>();
-     SwipeRefreshLayout swipeLayout;
+    List<String> list7 = new ArrayList<>();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        setContentView(R.layout.activity_choose_feed_items);
 
-    }
+        setTitle("My Feed Items");
 
-    Activity activity;
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-        this.activity = activity;
-    }
+        next = (Button)  findViewById(R.id.next);
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
-        next = (Button) rootView.findViewById(R.id.next);
-
-        collegespace = (CheckBox) rootView.findViewById(R.id.check_collegespace);
-        crosslinks = (CheckBox) rootView.findViewById(R.id.check_crosslinks);
-        junoon = (CheckBox) rootView.findViewById(R.id.check_junoon);
-        rotaract = (CheckBox) rootView.findViewById(R.id.check_rotaract);
-        bullet = (CheckBox) rootView.findViewById(R.id.check_bullet);
-        csi = (CheckBox) rootView.findViewById(R.id.check_csi);
-        ieee = (CheckBox) rootView.findViewById(R.id.check_ieee);
-        deb = (CheckBox) rootView.findViewById(R.id.check_debsoc);
-        quiz = (CheckBox) rootView.findViewById(R.id.check_quiz);
-        ashwa = (CheckBox) rootView.findViewById(R.id.check_ashwa);
+        collegespace = (CheckBox)  findViewById(R.id.check_collegespace);
+        crosslinks = (CheckBox)  findViewById(R.id.check_crosslinks);
+        junoon = (CheckBox)  findViewById(R.id.check_junoon);
+        rotaract = (CheckBox)  findViewById(R.id.check_rotaract);
+        bullet = (CheckBox)  findViewById(R.id.check_bullet);
+        csi = (CheckBox)  findViewById(R.id.check_csi);
+        ieee = (CheckBox)  findViewById(R.id.check_ieee);
+        deb = (CheckBox)  findViewById(R.id.check_debsoc);
+        quiz = (CheckBox)  findViewById(R.id.check_quiz);
+        ashwa = (CheckBox)  findViewById(R.id.check_ashwa);
 
 
 
-        tCollegespace = (TextView) rootView.findViewById(R.id.stars_collegespace);
-        tCrosslinks = (TextView) rootView.findViewById(R.id.stars_crosslinks);
-        tJunoon = (TextView) rootView.findViewById(R.id.stars_junoon);
-        tRotaract = (TextView) rootView.findViewById(R.id.stars_rotaract);
-        tBullet = (TextView) rootView.findViewById(R.id.stars_bullethawk);
-        tCsi = (TextView) rootView.findViewById(R.id.stars_csi);
-        tIeee = (TextView) rootView.findViewById(R.id.stars_ieee);
-        tDeb = (TextView) rootView.findViewById(R.id.stars_debsoc);
-        tQuiz = (TextView) rootView.findViewById(R.id.stars_quiz);
-        tAshwa = (TextView) rootView.findViewById(R.id.stars_ashwa);
+        tCollegespace = (TextView)  findViewById(R.id.stars_collegespace);
+        tCrosslinks = (TextView)  findViewById(R.id.stars_crosslinks);
+        tJunoon = (TextView)  findViewById(R.id.stars_junoon);
+        tRotaract = (TextView)  findViewById(R.id.stars_rotaract);
+        tBullet = (TextView)  findViewById(R.id.stars_bullethawk);
+        tCsi = (TextView)  findViewById(R.id.stars_csi);
+        tIeee = (TextView)  findViewById(R.id.stars_ieee);
+        tDeb = (TextView)  findViewById(R.id.stars_debsoc);
+        tQuiz = (TextView)  findViewById(R.id.stars_quiz);
+        tAshwa = (TextView)  findViewById(R.id.stars_ashwa);
 
-        SharedPreferences i = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+        SharedPreferences i = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Crosslinks = i.getBoolean("crosslinks", false);
         Collegespace = i.getBoolean("collegespace", false);
         Bullet = i.getBoolean("bullet", false);
@@ -162,7 +143,7 @@ public class Feed extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {Ieee = b;
             }
         });
-       deb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        deb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Deb = b;
@@ -189,11 +170,8 @@ public class Feed extends Fragment {
             @Override
             public void onClick(View view) {
 
-                SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
+                SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor e = p.edit();
-                Fragment mFragment = new FinalFeed();
-
-
                 e.putBoolean("crosslinks", Crosslinks);
                 e.putBoolean("collegespace", Collegespace);
                 e.putBoolean("bullet", Bullet);
@@ -206,7 +184,7 @@ public class Feed extends Fragment {
                 e.putBoolean("ashwa", Ashwa);
                 e.putBoolean("set", true);
                 e.commit();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mFragment).commit();
+                finish();
             }
         });
 
@@ -224,14 +202,12 @@ public class Feed extends Fragment {
             new Calclike(tAshwa, Val.id_ashwa).execute();
         }
         else
-            Toast.makeText(activity, "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
 
-        return rootView;
     }
-
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -280,10 +256,20 @@ public class Feed extends Fragment {
             bmImage.setText(text);
         }
     }
+
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        super.onCreateOptionsMenu(menu, inflater);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_choose_feed_items, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
+    }
 }

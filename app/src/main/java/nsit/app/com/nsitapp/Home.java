@@ -38,7 +38,6 @@ import java.util.List;
 
 public class Home extends Fragment {
 
-    int currentFirstVisibleItem, currentVisibleItemCount, currentTotalItemCount;
     boolean loadingMore=false;
     List<String> list = new ArrayList<String>();
     List<String> list1 = new ArrayList<String>();
@@ -77,7 +76,7 @@ public class Home extends Fragment {
         swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
         pb=(ProgressBar)rootView.findViewById(R.id.progressBar1);
         adapter = new CustomList(activity, list6,list, list2, list7, list1,list8);
-       footerView = ((LayoutInflater)activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
+        footerView = ((LayoutInflater)activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
         lv.addFooterView(footerView);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -111,9 +110,9 @@ public class Home extends Fragment {
 
 
         if(isNetworkAvailable())
-        new DownloadWebPageTask2(Val.id_nsitonline).execute();
+            new DownloadWebPageTask2(Val.id_nsitonline).execute();
         else
-        Toast.makeText(activity,"Cannot connect to Internet",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"Cannot connect to Internet",Toast.LENGTH_SHORT).show();
 
 
         return rootView;
@@ -246,9 +245,10 @@ public class Home extends Fragment {
 
             URL = next;
 
-            Log.e("this3 ",URL);
+            Log.e("this3 ",URL+" ");
 
 
+            if(URL!=null){
             HttpClient Client = new DefaultHttpClient();
             HttpGet httpget = new HttpGet(URL);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -256,7 +256,7 @@ public class Home extends Fragment {
                 text = Client.execute(httpget, responseHandler);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }}
 
             return null;
         }
@@ -266,6 +266,7 @@ public class Home extends Fragment {
             int j=0;
             JSONObject ob;
             JSONArray arr;
+            if(text!=null)
             try {
                 ob = new JSONObject(text);
                 arr = ob.getJSONArray("data");
@@ -273,20 +274,15 @@ public class Home extends Fragment {
 
                 for(int i = 0; i < arr.length(); i++){
                     try {
-                        if(arr.getJSONObject(i).has("message")) {
+                        if(arr.getJSONObject(i).has("message"))
                             list.add(arr.getJSONObject(i).getString("message"));
-                        }
-                        else {
+                        else
                             list.add(null);
-                        }
-
 
                         if(!(arr.getJSONObject(i).has("object_id")))
                             list1.add(null);
                         else
                             list1.add(arr.getJSONObject(i).getString("object_id"));
-
-
 
                         if(arr.getJSONObject(i).has("picture")) {
                             list6.add(arr.getJSONObject(i).getString("picture"));
@@ -344,6 +340,7 @@ public class Home extends Fragment {
                 Log.e("Scroll To: ",e.toString());
                 e.printStackTrace();
             }
+<<<<<<< HEAD
 
           /*  lv.post(new Runnable() {
                 @Override
@@ -353,6 +350,8 @@ public class Home extends Fragment {
             });*/
 
             // Log.e("Yo", text);
+=======
+>>>>>>> 85457eab41e7cf261ad4f572aa3805be60bf8b30
         }
     }
     @Override

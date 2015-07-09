@@ -83,7 +83,11 @@ public class VideoList_Adapter extends BaseAdapter {
         int MonthInt = Integer.parseInt(tempArray[1]);
         switch (MonthInt){
             case 1 :tempArray[1] = "Jan";
+<<<<<<< HEAD
                     break;
+=======
+                break;
+>>>>>>> 16672fc86ebd5ca817d71f282fe923e68b08798d
             case 2 :tempArray[1] = "Feb";
                 break;
             case 3 :tempArray[1] = "March";

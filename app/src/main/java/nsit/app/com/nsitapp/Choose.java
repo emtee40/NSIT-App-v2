@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.internal.widget.AdapterViewCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,12 +72,250 @@ public class Choose extends AppCompatActivity implements AdapterView.OnItemSelec
                 }else if(!h){
                     Toast.makeText(getApplicationContext(),"Select Half",Toast.LENGTH_SHORT).show();
                 }else {
+
+                    Log.e("here",se +"\n"+sec+"\n"+br+"\n"+"  ");
+                String timetableid = null;
+                    if(se.equals("Sem 1")){
+                        Log.e("in","Sem 1");
+                        if(br.equals("COE")) {
+                            if(sec.equals("Sec 1"))
+                            timetableid = Val.COE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.COE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.COE_sem1_sec3;
+                        }
+                        if(br.equals("IT")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.IT_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.IT_sem1_sec2;
+                             }
+                        if(br.equals("ECE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ECE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ECE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ECE_sem1_sec3;
+                        }
+                        if(br.equals("ICE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ICE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ICE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ICE_sem1_sec3;
+                        }
+                        if(br.equals("MPAE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.MPAE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.MPAE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.MPAE_sem1_sec3;
+                        }
+                        if(br.equals("BT")) {
+                                timetableid = Val.BT_sem1_sec1;
+                        }
+
+                    }
+                    if(se.equals("Sem 3")){
+                        Log.e("in","Sem 3");
+                        if(br.equals("COE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.COE_sem3_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.COE_sem3_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.COE_sem3_sec3;
+                        }
+                        if(br.equals("IT")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.IT_sem3_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.IT_sem3_sec2;
+                        }
+                        if(br.equals("ECE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ECE_sem3_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ECE_sem3_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ECE_sem3_sec3;
+                        }
+                        if(br.equals("ICE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ICE_sem3_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ICE_sem3_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ICE_sem3_sec3;
+                        }
+                        if(br.equals("MPAE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.MPAE_sem3_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.MPAE_sem3_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.MPAE_sem3_sec3;
+                        }
+                        if(br.equals("BT")) {
+                            timetableid = Val.BT_sem3_sec1;
+                        }
+
+                    }
+                    if(se.equals("Sem 5")){
+                        if(br.equals("COE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.COE_sem5_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.COE_sem5_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.COE_sem5_sec3;
+                        }
+                        if(br.equals("IT")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.IT_sem5_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.IT_sem5_sec2;
+                        }
+                        if(br.equals("ECE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ECE_sem5_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ECE_sem5_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ECE_sem5_sec3;
+                        }
+                        if(br.equals("ICE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ICE_sem5_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ICE_sem5_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ICE_sem5_sec3;
+                        }
+                        if(br.equals("MPAE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.MPAE_sem5_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.MPAE_sem5_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.MPAE_sem5_sec3;
+                        }
+                        if(br.equals("BT")) {
+                            timetableid = Val.BT_sem5_sec1;
+                        }
+
+                    }
+                    if(se.equals("Sem 7")){
+                        if(br.equals("COE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.COE_sem7_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.COE_sem7_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.COE_sem7_sec3;
+                        }
+                        if(br.equals("IT")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.IT_sem7_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.IT_sem7_sec2;
+                        }
+                        if(br.equals("ECE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ECE_sem7_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ECE_sem7_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ECE_sem7_sec3;
+                        }
+                        if(br.equals("ICE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ICE_sem7_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ICE_sem7_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ICE_sem7_sec3;
+                        }
+                        if(br.equals("MPAE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.MPAE_sem7_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.MPAE_sem7_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.MPAE_sem7_sec3;
+                        }
+                        if(br.equals("BT")) {
+                            timetableid = Val.BT_sem7_sec1;
+                        }
+
+                    } if(se.equals("Sem 1")){
+                        if(br.equals("COE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.COE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.COE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.COE_sem1_sec3;
+                        }
+                        if(br.equals("IT")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.IT_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.IT_sem1_sec2;
+                        }
+                        if(br.equals("ECE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ECE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ECE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ECE_sem1_sec3;
+                        }
+                        if(br.equals("ICE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.ICE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.ICE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.ICE_sem1_sec3;
+                        }
+                        if(br.equals("MPAE")) {
+                            if(sec.equals("Sec 1"))
+                                timetableid = Val.MPAE_sem1_sec1;
+                            if(sec.equals("Sec 2"))
+                                timetableid = Val.MPAE_sem1_sec2;
+                            if(sec.equals("Sec 3"))
+                                timetableid = Val.MPAE_sem1_sec3;
+                        }
+                        if(br.equals("BT")) {
+                            timetableid = Val.BT_sem1_sec1;
+                        }
+
+                    }
+
                     SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor e = s.edit();
                     e.putString("sem", se);
                     e.putString("sec", sec);
                     e.putString("branch", br);
                     e.putString("half", hal);
+
+
+                    String x =s.getString("timetableid",null);
+                    if(x!=null)
+                    if(x.equals(timetableid))
+                    e.putBoolean("timetablechanged",true);
+
+
+                    e.putString("timetableid",timetableid);
+                    e.putBoolean("classset", true);
+
+                    Log.e("timetable id", " " + timetableid);
+
                     e.commit();
                     finish();
                 }

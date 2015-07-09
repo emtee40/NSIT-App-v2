@@ -50,6 +50,7 @@ public class FinalFeed extends Fragment {
     String nextn;
     CustomList adapter;
     int first;
+    static int itemsadded=-1;
    String nextcollegespace,nextcrosslinks,nextjunoon,nextbullet,nextrotaract,nextquiz,nextieee,nextcsi,nextashwa,nextdeb;
     List<String> list = new ArrayList<String>();
     List<String> list1 = new ArrayList<String>();
@@ -83,7 +84,7 @@ public class FinalFeed extends Fragment {
 
 
 
-         i = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+         i = PreferenceManager.getDefaultSharedPreferences(activity.getApplicationContext());
         Crosslinks = i.getBoolean("crosslinks", false);
         Collegespace = i.getBoolean("collegespace", false);
         Bullet = i.getBoolean("bullet", false);
@@ -98,7 +99,7 @@ public class FinalFeed extends Fragment {
 
 
 
-        footerView = ((LayoutInflater)getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
+        footerView = ((LayoutInflater)activity.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
         lv.addFooterView(footerView);
 
         swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
@@ -115,7 +116,7 @@ public class FinalFeed extends Fragment {
                 android.R.color.holo_red_light);
 
         if(!Csi && !Collegespace && !Crosslinks && !Bullet && !Junoon && !Ieee&& !Ashwa&& !Quiz&& !Deb &&!Rotaract) {
-            Toast.makeText(getActivity(),"No item selected",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"No item selected",Toast.LENGTH_SHORT).show();
         }else {
 
             if (isNetworkAvailable()) {
@@ -143,7 +144,7 @@ public class FinalFeed extends Fragment {
                     new DownloadWebPageTask2(Val.id_debsoc).execute();
 
             } else
-                Toast.makeText(getActivity(), "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -192,7 +193,7 @@ public class FinalFeed extends Fragment {
 
                     }
                     else
-                        Toast.makeText(getActivity(), "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, "Cannot connect to Internet", Toast.LENGTH_SHORT).show();
 
 
 
@@ -235,7 +236,6 @@ public class FinalFeed extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             Log.e("YO", "Done");
-            Log.e("yrs",""+text);
 
             int j=0;
             JSONObject ob;
@@ -247,11 +247,10 @@ public class FinalFeed extends Fragment {
 
                 for(int i = 0; i < arr.length(); i++){
                     try {
-                        if(arr.getJSONObject(i).has("message")&&arr.getJSONObject(i).has("picture")&&arr.getJSONObject(i).has("link")&&arr.getJSONObject(i).has("likes")) {
+                        if(arr.getJSONObject(i).has("message"))
                             list.add(arr.getJSONObject(i).getString("message"));
-                        }
                         else {
-                            continue;
+                           list.add(null);
                         }
                         if(!(arr.getJSONObject(i).has("object_id")))
                             list1.add(null);
@@ -283,7 +282,10 @@ public class FinalFeed extends Fragment {
                             list2.add("0");
 
 
+                        if(arr.getJSONObject(i).has("created_time"))
                         list8.add(arr.getJSONObject(i).getString("created_time"));
+                        else
+                            list8.add(null);
                     } catch (Exception e) {
                          Log.e("Error","Errror at : " + i + " "+e.getMessage());
                     }
@@ -354,8 +356,8 @@ public class FinalFeed extends Fragment {
             String[] x = next.split("&__paging_token=");
             token=x[1];
 
-            URL = "https://graph.facebook.com/" + id + "/feed?limit=10&fields=picture,shares,message,object_id,link,comments.limit(0).summary(true)" +
-                    ",likes.limit(0).summary(true)&access_token=" + Val.common_access+"&__paging_token="+token;
+            URL = next;
+            Log.e("this",URL);
             HttpClient Client = new DefaultHttpClient();
             HttpGet httpget = new HttpGet(URL);
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
@@ -382,7 +384,7 @@ public class FinalFeed extends Fragment {
 
                 for(int i = 0; i < arr.length(); i++){
                     try {
-                        if(arr.getJSONObject(i).has("message")&&arr.getJSONObject(i).has("picture")&&arr.getJSONObject(i).has("link")&&arr.getJSONObject(i).has("likes")) {
+                        if(arr.getJSONObject(i).has("message")) {
                             list.add(arr.getJSONObject(i).getString("message"));
                         }
                         else {
@@ -417,8 +419,10 @@ public class FinalFeed extends Fragment {
                         else
                             list2.add("0");
 
+                        if(arr.getJSONObject(i).has("created_time"))
                         list8.add(arr.getJSONObject(i).getString("created_time"));
-
+                        else
+                            list8.add(null);
 
 
 
@@ -484,17 +488,15 @@ public class FinalFeed extends Fragment {
         Log.e("status : "," "+ Csi + Collegespace+Crosslinks+Crosslinks+Bullet+Junoon+Ieee+Ashwa+Quiz+Deb+Rotaract);
         if(!Csi && !Collegespace && !Crosslinks && !Bullet && !Junoon && !Ieee&& !Ashwa&& !Quiz&& !Deb &&!Rotaract) {
 
-            Log.e("EFinish", "All done");
-
-
             pb.setVisibility(View.GONE);
 
             lv.removeFooterView(footerView);
 
-            adapter = new CustomList(getActivity(), list6, list, list2, list7, list1, list8);
-            lv.addHeaderView(new View(getActivity()));
-            lv.addFooterView(new View(getActivity()));
-            lv.setAdapter(adapter);
+            adapter = new CustomList(activity, list6, list, list2, list7, list1, list8);
+            lv.addHeaderView(new View(activity));
+            lv.addFooterView(new View(activity));
+            if (activity != null)
+                lv.setAdapter(adapter);
             first = 0;
             Log.e("first","zero");
 
@@ -523,7 +525,7 @@ public class FinalFeed extends Fragment {
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) getActivity().getSystemService(getActivity().CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) activity.getSystemService(activity.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

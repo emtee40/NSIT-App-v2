@@ -31,14 +31,17 @@
         </activity>
         <activity
             android:name=".Decsription"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_decsription" >
         </activity>
         <activity
             android:name=".ImageAct"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_image" >
         </activity>
         <activity
             android:name=".LocationMapView"
+            android:configChanges="orientation|screenSize"
             android:label="LocationMapView" >
         </activity>
 
@@ -46,8 +49,12 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBgktirlOODUO9zWD-808D7zycmP7smp-Y"/>
+
+
+        <!--"AIzaSyCmmTcw4LR_qzSaGcl6orGV4S6nfHDhlss"-->
         <activity
             android:name=".Choose"
+            android:configChanges="orientation|screenSize"
             android:label="Select" >
         </activity>
     </application>

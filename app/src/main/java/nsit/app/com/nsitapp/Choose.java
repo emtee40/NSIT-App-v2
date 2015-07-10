@@ -19,13 +19,13 @@ public class Choose extends AppCompatActivity implements AdapterView.OnItemSelec
 
 
 
-    String[] sem={"Select semester","Sem 1","Sem 3","Sem 5","Sem 7"};
-    String[] branch={"Select Branch","COE","IT","ECE","ICE","MPAE","BT"};
-    String[] section={"Select section","Sec 1","Sec 2","Sec 3"};
-    String[] section1={"Select section","Sec 1","Sec 2"};
-    String[] Half2={"Select Half","First Half","Second Half"};
+    String[] sem={"Semester","Sem 1","Sem 3","Sem 5","Sem 7"};
+    String[] branch={"Branch","COE","IT","ECE","ICE","MPAE","BT"};
+    String[] section={"Section","Sec 1","Sec 2","Sec 3"};
+    String[] section1={"Section","Sec 1","Sec 2"};
+    String[] Half2={"Half","First Half","Second Half"};
 
-    String[] x ={"Select Section"};
+    String[] x ={"Section"};
     Spinner Sem,Branch,Sec,Half;
     Boolean s,b,sect,h;
     Button set;
@@ -64,13 +64,13 @@ public class Choose extends AppCompatActivity implements AdapterView.OnItemSelec
             @Override
             public void onClick(View view) {
                 if(!s){
-                    Toast.makeText(getApplicationContext(),"Select Semester",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Semester",Toast.LENGTH_SHORT).show();
                 }else if(!b){
-                    Toast.makeText(getApplicationContext(),"Select Branch",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Branch",Toast.LENGTH_SHORT).show();
                 }else if(!sect){
-                    Toast.makeText(getApplicationContext(),"Select Section",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Section",Toast.LENGTH_SHORT).show();
                 }else if(!h){
-                    Toast.makeText(getApplicationContext(),"Select Half",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Half",Toast.LENGTH_SHORT).show();
                 }else {
 
                     Log.e("here",se +"\n"+sec+"\n"+br+"\n"+"  ");

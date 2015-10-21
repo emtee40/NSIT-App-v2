@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -64,13 +65,11 @@ public class FinalFeed extends Fragment implements Constant{
     List<String> list8 = new ArrayList<String>();
     List<String> list9 = new ArrayList<String>();
     View footerView;
-    dbAdapter db;
     SharedPreferences i;
     ListView lv;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); setHasOptionsMenu(true);
-        db = new dbAdapter(getActivity());
     }
 
     Activity activity;
@@ -196,6 +195,7 @@ public class FinalFeed extends Fragment implements Constant{
                         break;
                 }
 
+                dbAdapter db = new dbAdapter(getActivity());
                 db.open();
 
                 for(int i = 0; i < arr.length(); i++){
@@ -249,7 +249,8 @@ public class FinalFeed extends Fragment implements Constant{
                         }else
                             list9.add(null);
 
-                    db.insertRow(list.get(i), list1.get(i), list2.get(i), list6.get(i), list7.get(i), list8.get(i), list9.get(i));
+                    db.insertRow(list.get(list.size()-1), list1.get(list1.size()-1), list2.get(list2.size()-1), list6.get(list6.size()-1),
+                            list7.get(list7.size()-1), list8.get(list8.size()-1), list9.get(list9.size()-1), id);
                 }
 
                 db.close();
@@ -261,6 +262,157 @@ public class FinalFeed extends Fragment implements Constant{
             if(first==1) {
                 done();
             }
+
+        }
+    }
+
+    private class DownloadWebPageTask3 extends AsyncTask<String, Void, String> {
+        String id,token,next;
+
+        public DownloadWebPageTask3(String id,String n) {
+            this.id = id;
+            next=n;
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String URL;
+
+            if(next!=null){
+            String[] x = next.split("&__paging_token=");
+            token=x[1];
+
+            URL = next;
+            HttpClient Client = new DefaultHttpClient();
+            HttpGet httpget = new HttpGet(URL);
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            try {
+                text = Client.execute(httpget, responseHandler);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            int j=0;
+            JSONObject ob;
+            JSONArray arr;
+            if(text!=null)
+            try {
+                ob = new JSONObject(text);
+                arr = ob.getJSONArray("data");
+                if(ob.has("paging")) {
+                    ob = ob.getJSONObject("paging");
+
+                    if (ob.has("next"))
+                        nextn = ob.getString("next");
+                    else
+                        nextn = null;
+
+                }
+                else
+                    nextn = null;
+
+                dbAdapter db = new dbAdapter(getActivity());
+                db.open();
+
+                for(int i = 0; i < arr.length(); i++){
+
+                        if(arr.getJSONObject(i).has("message")) {
+                            list.add(arr.getJSONObject(i).getString("message"));
+                        }
+                        else {
+                            continue;
+                        }
+                        if(!(arr.getJSONObject(i).has("object_id")))
+                            list1.add(null);
+                        else
+                            list1.add(arr.getJSONObject(i).getString("object_id"));
+
+
+                        if(arr.getJSONObject(i).has("to")){
+                            JSONObject o = new JSONObject(arr.getJSONObject(i).getString("to"));
+                            JSONArray a2 = o.getJSONArray("data");
+                            String x = a2.getJSONObject(0).getString("name");
+                            list9.add(x);
+                        }else
+                        list9.add(null);
+
+                        if(arr.getJSONObject(i).has("picture")) {
+                            list6.add(arr.getJSONObject(i).getString("picture"));
+                        }
+                        else
+                            list6.add(null);
+                        if(arr.getJSONObject(i).has("link")) {
+                            list7.add(arr.getJSONObject(i).getString("link"));
+                        }
+                        else
+                            list7.add(null);
+                        if(arr.getJSONObject(i).has("likes")) {
+                            String s = arr.getJSONObject(i).getString("likes");
+                            JSONObject o = new JSONObject(s);
+                            JSONArray a2 = o.getJSONArray("data");
+                            String x = o.getString("summary");
+                            JSONObject o2 = new JSONObject(x);
+
+                            list2.add(o2.getString("total_count"));    //No of likes
+                        }
+                        else
+                            list2.add("0");
+
+                        if(arr.getJSONObject(i).has("created_time"))
+                        list8.add(arr.getJSONObject(i).getString("created_time"));
+                        else
+                            list8.add(null);
+
+                    db.insertRow(list.get(list.size()-1), list1.get(list1.size()-1), list2.get(list2.size()-1), list6.get(list6.size()-1),
+                            list7.get(list7.size()-1), list8.get(list8.size()-1), list9.get(list9.size()-1), id);
+
+                }
+                db.close();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            switch (id) {
+                    case Val.id_collegespace: nextcollegespace=nextn;
+                        break;
+                    case Val.id_crosslinks:nextcrosslinks=nextn;
+                        Crosslinks = false;
+                        break;
+                    case Val.id_bullet:nextbullet=nextn;
+                        Bullet = false;
+                        break;
+                    case Val.id_junoon:nextjunoon=nextn;
+                        Junoon = false;
+                        break;
+                    case Val.id_rotaract:nextrotaract=nextn;
+                        Rotaract = false;
+                        break;
+                    case Val.id_csi:nextcsi=nextn;
+                        Csi = false;
+                        break;
+                    case Val.id_ieee:nextieee=nextn;
+                        Ieee = false;
+                        break;
+                    case Val.id_quiz:nextquiz=nextn;
+                        Quiz = false;
+                        break;
+                    case Val.id_ashwa:nextashwa=nextn;
+                        Ashwa = false;
+                        break;
+                    case Val.id_debsoc:nextdeb=nextn;
+                        Deb = false;
+                        break;
+             }
+            loadingMore=false;
+            lv.removeFooterView(footerView);
 
         }
     }
@@ -292,7 +444,6 @@ public class FinalFeed extends Fragment implements Constant{
             list6.clear();
             list7.clear();
             list8.clear();
-            list9.clear();
             adapter.notifyDataSetChanged();
             e.putBoolean("item_changed", false);
             e.commit();
@@ -315,6 +466,8 @@ public class FinalFeed extends Fragment implements Constant{
         Quiz = i.getBoolean(QUIZ, false);
         Ashwa = i.getBoolean(ASHWA, false);
 
+
+        dbAdapter db = new dbAdapter(getActivity());
 
         lv.addFooterView(footerView);
 
@@ -358,13 +511,6 @@ public class FinalFeed extends Fragment implements Constant{
                                 .text("No Internet Connection")
                                 .duration(Snackbar.SnackbarDuration.LENGTH_SHORT), activity);
                 db.open();
-                list.clear();
-                list1.clear();
-                list2.clear();
-                list6.clear();
-                list7.clear();
-                list8.clear();
-                list9.clear();
                 Cursor c = db.getAllRows();
                 if (c.moveToFirst()) {
                     do {
@@ -379,14 +525,13 @@ public class FinalFeed extends Fragment implements Constant{
                     } while (c.moveToNext());
                 }
                 db.close();
+                pb.setVisibility(View.GONE);
             }
             lv.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
         }
 
-
-/*
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -403,9 +548,6 @@ public class FinalFeed extends Fragment implements Constant{
                     lv.addFooterView(footerView);
                     if(Utils.isNetworkAvailable(activity)){
 
-                        db.open();
-                        db.deleteAll();
-                        db.close();
 
                         Crosslinks = i.getBoolean(CROSSLINKS, false);
                         Collegespace = i.getBoolean(COLLEGESPACE, false);
@@ -460,6 +602,7 @@ public class FinalFeed extends Fragment implements Constant{
                             } while(c.moveToNext());
                         }
                         db.close();
+                        pb.setVisibility(View.GONE);
                         adapter.notifyDataSetChanged();
 
                     }
@@ -468,8 +611,6 @@ public class FinalFeed extends Fragment implements Constant{
 
             }
         });
-
-        */
     }
 
     @Override
